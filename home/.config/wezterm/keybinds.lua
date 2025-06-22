@@ -13,13 +13,13 @@ return {
 		-- (macOS)アプリを非表示にする
 		{ key = "H", mods = "CTRL", action = act.HideApplication },
 		-- アプリを縮小化する
-		-- { key = "M", mods = "CTRL", action = act.Hide },
+		{ key = "M", mods = "CTRL", action = act.Hide },
 
 		-- よくわからない
 		-- { key = "K", mods = "CTRL", action = act.ClearScrollback("ScrollbackOnly") },
 		-- { key = "L", mods = "CTRL", action = act.ShowDebugOverlay },
 		-- rootで新しいwindowを作成する?
-		-- { key = "N", mods = "CTRL", action = act.SpawnWindow },
+		{ key = "N", mods = "CTRL", action = act.SpawnWindow },
 
 		-- 全てのtabを閉じる(アプリを終了する)
 		{ key = "Q", mods = "CTRL", action = act.QuitApplication },
@@ -70,7 +70,7 @@ return {
 		-- 縦に分割
 		{ key = "d", mods = "SUPER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 		-- 横に分割
-		{ key = "d", mods = "CTRL", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+		{ key = "D", mods = "SUPER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 		-- paneを閉じる
 		{ key = "x", mods = "SUPER", action = act({ CloseCurrentPane = { confirm = true } }) },
 		-- pane移動

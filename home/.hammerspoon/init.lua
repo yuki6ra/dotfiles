@@ -1,12 +1,14 @@
-local open_terminal = function()
-    local appName = "Wezterm"
-    local app = hs.application.get(appName)
+hyper = { "ctrl", "alt", "cmd" }
+meh = { "ctrl", "alt" }
 
-    if app == nil or app:isHidden() or not(app:isFrontmost()) then
-        hs.application.launchOrFocus(appName)
-    else
-        app:hide()
-    end
-end
+-- initialize modal manager
+-- spoon.SpoonInstall:andUse('ModalMgr')
 
-hs.hotkey.bind({"option"}, "space", open_terminal)
+-- spoon.ModalMgr.supervisor:bind('alt', 'L', 'Lock Screen', function() hs.caffeinate.lockScreen() end)
+-- spoon.ModalMgr.supervisor:bind('alt', 'Z', 'Toggle Hammerspoon Console', function() hs.toggleConsole() end)
+
+require("terminal")
+-- require("yabai")
+require("cheatsheet")
+
+-- spoon.ModalMgr.supervisor:enter()

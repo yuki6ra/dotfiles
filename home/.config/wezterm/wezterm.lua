@@ -1,5 +1,6 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
+local mux = wezterm.mux
 
 --------------------------------
 -- UI
@@ -12,23 +13,29 @@ config.automatically_reload_config = true
 config.font = wezterm.font("UDEV Gothic 35NFLG")
 
 -- font size
-config.font_size = 12.0
+config.font_size = 13.0
 
 -- IME日本語入力
 config.use_ime = true
 
 -- 背景透過
-config.window_background_opacity = 0.84
+config.window_background_opacity = 0.80
 
 -- 背景ぼかし
-config.macos_window_background_blur = 5
+config.macos_window_background_blur = 2
 
 -- カラースキーマの設定
 config.color_scheme = "Rosé Pine Moon (Gogh)"
 
 -- window初期サイズ
-config.initial_cols = 265
-config.initial_rows = 80
+-- config.initial_cols = 265
+-- config.initial_rows = 80
+
+wezterm.on("gui-startup", function(cmd)
+	local tab, pane, window = mux.spawn_window(cmd or { width = 158, height = 56 })
+	-- window:gui_window():set_position(0,0)
+	window:set_inner_size(800, 1020)
+end)
 
 --------------------------------
 -- tab
@@ -36,6 +43,7 @@ config.initial_rows = 80
 
 -- title barを非表示
 config.window_decorations = "RESIZE"
+config.hide_tab_bar_if_only_one_tab = true
 
 -- tab barを透過
 config.window_frame = {
@@ -45,7 +53,7 @@ config.window_frame = {
 
 -- tab barと背景を同色にする
 config.window_background_gradient = {
-	-- color schemeと同じ色にすること!
+	-- note: color schemeと同じ色にする
 	colors = { "#232135" },
 }
 

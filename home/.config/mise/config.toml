@@ -1,7 +1,0 @@
-[tools]
-java = "corretto-21"
-rust = "latest"
-ruby = "latest"
-go = "1.23"
-python = "latest"
-bun = "1.1"

@@ -9,7 +9,7 @@ MNML_ELLIPSIS_CHAR="${MNML_ELLIPSIS_CHAR:-..}"
 MNML_BGJOB_MODE=${MNML_BGJOB_MODE:-4}
 
 [ "${+MNML_PROMPT}" -eq 0 ] && MNML_PROMPT=(mnml_ssh mnml_pyenv mnml_status mnml_keymap)
-[ "${+MNML_RPROMPT}" -eq 0 ] && MNML_RPROMPT=('mnml_cwd 4 0' mnml_git)
+[ "${+MNML_RPROMPT}" -eq 0 ] && MNML_RPROMPT=(mnml_git mnml_datetime)
 [ "${+MNML_INFOLN}" -eq 0 ] && MNML_INFOLN=(mnml_err mnml_jobs mnml_uhp mnml_files)
 
 [ "${+MNML_MAGICENTER}" -eq 0 ] && MNML_MAGICENTER=(mnml_me_dirs mnml_me_ls mnml_me_git)
@@ -176,6 +176,15 @@ function mnml_files {
     output="$output${_w}]"
 
     printf '%b' "$output"
+}
+
+# 日時の表示 (YYYY-MM-DD HH:MM:SS)
+function mnml_datetime {
+    local _w="%{\e[0m%}"
+    local _g="%{\e[38;5;244m%}"
+    local now="$(TZ=Asia/Tokyo date +%T)"
+    local ymd="$(TZ=Asia/Tokyo date +%F)"
+    printf '%b' "$_g$ymd$_w $_g$now"
 }
 
 # Magic enter functions

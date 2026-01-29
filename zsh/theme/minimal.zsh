@@ -1,3 +1,5 @@
+# ref: https://zenn.dev/chot/articles/1d10f3a40332ab#%E3%83%86%E3%83%BC%E3%83%9E
+
 # Global settings
 MNML_OK_COLOR="${MNML_OK_COLOR:-2}"
 MNML_ERR_COLOR="${MNML_ERR_COLOR:-1}"

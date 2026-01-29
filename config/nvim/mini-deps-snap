@@ -1,0 +1,7 @@
+return {
+  ["mini.nvim"] = "9b935c218ddba02e5dc75c94f90143bce1f7c646",
+  ["nvim-treesitter"] = "568ede7e79172a0fe7c9d631454a97ad968deaf2",
+  ["nvim-ts-context-commentstring"] = "1b212c2eee76d787bbea6aa5e92a2b534e7b4f8f",
+  ["quicker.nvim"] = "fc041830fa7cf093786b0d5990d99cf3c7b0c129",
+  ["vimdoc-ja"] = "e1769a3a34faf983371a92ecc393ca6102837ed3"
+}

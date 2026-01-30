@@ -34,8 +34,8 @@ now(function()
 end)
 
 -- Load plugin configurations
-require('config.ui')      -- UI系プラグイン
-require('config.edit')    -- 編集系プラグイン
-require('config.nav')     -- ナビゲーション系プラグイン
-require('config.git')     -- Git系プラグイン
+require('config.99_ui')      -- UI系プラグイン
+require('config.02_edit')    -- 編集系プラグイン
+require('config.04_nav')     -- ナビゲーション系プラグイン
+require('config.03_git')     -- Git系プラグイン
 require('config._options')

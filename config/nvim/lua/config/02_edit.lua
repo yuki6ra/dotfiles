@@ -145,10 +145,11 @@ now(function()
     'lua', 'vim',
     'tsx', 'jsx',
     'javascript', 'typescript', 'html',
+    'terraform'
   })
   -- 自動ハイライトの有効化
   vim.api.nvim_create_autocmd({ "FileType" }, {
-    pattern = { 'lua', 'vim', 'javascript', 'typescript', 'html', 'typescriptreact' },
+    pattern = { 'lua', 'vim', 'javascript', 'typescript', 'html', 'typescriptreact', 'terraform' },
     callback = function()
       -- syntax highlighting, provided by Neovim
       vim.treesitter.start()

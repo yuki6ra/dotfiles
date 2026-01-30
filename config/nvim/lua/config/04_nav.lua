@@ -142,7 +142,7 @@ end)
 -- ファイル選択支援系
 -- ファイラ
 now(function()
-  require('mini.files').setup()
+  require('mini.files').setup({})
 
   vim.api.nvim_create_user_command(
     'Files',
@@ -152,6 +152,20 @@ now(function()
     { desc = 'Open file exproler' }
   )
   vim.keymap.set('n', '<space>e', '<cmd>Files<cr>', { desc = 'Open file exproler' })
+
+  -- customize window
+  vim.api.nvim_create_autocmd('User', {
+    pattern = 'MiniFilesWindowOpen',
+    callback = function(args)
+      local win_id = args.data.win_id
+
+      -- ウィンドウ固有の設定をカスタマイズ
+      vim.wo[win_id].winblend = 0
+      local config = vim.api.nvim_win_get_config(win_id)
+      config.border, config.title_pos = 'double', 'right'
+      vim.api.nvim_win_set_config(win_id, config)
+    end,
+  })
 end)
 
 -- Fuzzy Finder

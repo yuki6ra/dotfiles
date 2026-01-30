@@ -34,9 +34,14 @@ end)
 
 -- 通知をウィンドウに表示
 now(function()
-  require('mini.notify').setup()
+  local mini_notify = require('mini.notify')
+  mini_notify.setup({
+    window = {
+      winblend = 0,
+    }
+  })
 
-  vim.notify = require('mini.notify').make_notify({
+  vim.notify = mini_notify.make_notify({
     -- ERROR = { duratin = 10000 }
   })
 
@@ -45,11 +50,6 @@ now(function()
     MiniNotify.show_history()
   end, { desc = 'Show Notify History' })
 end)
-
--- カラースキームを変更
--- now(function()
---   vim.cmd.colorscheme('minischeme')
--- end)
 
 -- 文字ハイライト
 later(function()
@@ -133,4 +133,27 @@ later(function()
   add('https://github.com/vim-jp/vimdoc-ja')
   -- prefer Jaganese as the help language
   vim.opt.helplang:prepend('ja')
+end)
+
+-- カラースキーム
+now(function()
+  add({ source = 'projekt0n/github-nvim-theme' })
+  require('github-theme').setup({
+    options = {
+      transparent = true,
+    }
+  })
+  vim.cmd.colorscheme('github_dark')
+
+  require('mini.colors').get_colorscheme():resolve_links():add_transparency({
+    general = true,
+    float = true,
+    statuscolumn = true,
+    statusline = true,
+    tabline = true,
+    winbar = true
+  }):apply()
+  -- floating window to transparency
+  vim.o.winblend = 0
+  vim.o.pumblend = 30
 end)

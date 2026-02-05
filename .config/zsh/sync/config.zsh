@@ -35,3 +35,6 @@ tgz() {
 ##############################
 # gitの自動補完
 autoload -Uz compinit && compinit
+
+# nix
+. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh

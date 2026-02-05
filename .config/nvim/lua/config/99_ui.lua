@@ -137,13 +137,20 @@ end)
 
 -- カラースキーム
 now(function()
-  add({ source = 'projekt0n/github-nvim-theme' })
-  require('github-theme').setup({
+  -- add({ source = 'projekt0n/github-nvim-theme' })
+  -- require('github-theme').setup({
+  --   options = {
+  --     transparent = true,
+  --   }
+  -- })
+  -- vim.cmd.colorscheme('github_dark')
+  add({ source = 'masisz/wisteria.nvim' })
+  require('wisteria').setup({
     options = {
-      transparent = true,
+      transparent = true
     }
   })
-  vim.cmd.colorscheme('github_dark')
+  vim.cmd.colorscheme('wisteria')
 
   require('mini.colors').get_colorscheme():resolve_links():add_transparency({
     general = true,

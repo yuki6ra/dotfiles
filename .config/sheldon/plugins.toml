@@ -32,12 +32,12 @@ github = "zsh-users/zsh-completions"
 github = "zdharma-continuum/fast-syntax-highlighting"
 
 [plugins.dotfiles-defer]
-local = "~/Documents/dotfiles/zsh"
+local = "~/Documents/dotfiles/.config/zsh"
 use = ["{!sync,*}.zsh"]
 apply = ["defer"]
 
 [plugins.dotfiles-sync]
-local = "~/Documents/dotfiles/zsh/sync"
+local = "~/Documents/dotfiles/.config/zsh/sync"
 use = ["*.zsh"]
 apply = ["source"]
 

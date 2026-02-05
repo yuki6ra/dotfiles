@@ -124,6 +124,14 @@ end)
 -- 選択範囲の移動
 later(function()
   require('mini.move').setup()
+  vim.keymap.set('x', '<M-Up>', '<cmd>lua MiniMove.move_selection("up")<cr>', { desc = 'MiniMove selection' })
+  vim.keymap.set('x', '<M-Down>', '<cmd>lua MiniMove.move_selection("down")<cr>', { desc = 'MiniMove selection' })
+  vim.keymap.set('x', '<M-Left>', '<cmd>lua MiniMove.move_selection("left")<cr>', { desc = 'MiniMove selection' })
+  vim.keymap.set('x', '<M-Right>', '<cmd>lua MiniMove.move_selection("right")<cr>', { desc = 'MiniMove selection' })
+  vim.keymap.set('n', '<M-Up>', '<cmd>lua MiniMove.move_line("up")<cr>', { desc = 'MiniMove line' })
+  vim.keymap.set('n', '<M-Down>', '<cmd>lua MiniMove.move_line("down")<cr>', { desc = 'MiniMove line' })
+  vim.keymap.set('n', '<M-Left>', '<cmd>lua MiniMove.move_line("left")<cr>', { desc = 'MiniMove line' })
+  vim.keymap.set('n', '<M-Right>', '<cmd>lua MiniMove.move_line("right")<cr>', { desc = 'MiniMove line' })
 end)
 
 -- 文字列の並べ直し
@@ -145,11 +153,12 @@ now(function()
     'lua', 'vim',
     'tsx', 'jsx',
     'javascript', 'typescript', 'html',
-    'terraform'
+    'terraform', 'bash',
+    'nix'
   })
   -- 自動ハイライトの有効化
   vim.api.nvim_create_autocmd({ "FileType" }, {
-    pattern = { 'lua', 'vim', 'javascript', 'typescript', 'html', 'typescriptreact', 'terraform' },
+    pattern = { 'lua', 'vim', 'javascript', 'typescript', 'html', 'typescriptreact', 'terraform', 'bash', 'nix' },
     callback = function()
       -- syntax highlighting, provided by Neovim
       vim.treesitter.start()
@@ -159,6 +168,7 @@ now(function()
       vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
     end,
   })
+  vim.treesitter.language.register("bash", { "sh", "zsh" })
 end)
 
 -- treesitterから、適切な形に自動コメントアウト

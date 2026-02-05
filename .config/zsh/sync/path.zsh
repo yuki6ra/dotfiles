@@ -24,3 +24,8 @@ source $(brew --prefix)/etc/bash_completion.d/az
 
 # 社用はcolimaを必ず使う
 export DOCKER_HOST="unix://${HOME}/.colima/default/docker.sock"
+
+# 社用はopensslにpathが必要
+export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"

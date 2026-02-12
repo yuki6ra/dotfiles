@@ -26,7 +26,7 @@
     in
     {
       homeConfigurations =
-        import ./.profile
+        import ./nix/home-manager/.profile
         |> builtins.mapAttrs(_name: { user, modules, system }:
            let
               pkgs = nixpkgs.legacyPackages.${system};

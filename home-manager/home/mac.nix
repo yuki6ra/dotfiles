@@ -9,12 +9,16 @@
     zsh
     sheldon
     zeno
+    mise
+    nix
   ];
 
   home.file = {
     ".zshrc".source = ../../.config/zsh/.zshrc;
     ".config/sheldon".source = ../../.config/sheldon;
     ".config/zeno".source = ../../.config/zeno;
+    ".config/mise".source = ../../.config/mise;
+    ".config/nix".source = ../../.config/nix;
   };
 
   home.sessionVariables = {

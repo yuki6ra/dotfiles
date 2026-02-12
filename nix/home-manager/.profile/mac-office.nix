@@ -1,6 +1,6 @@
 let
   username = "@user@";
-  hostname = "@host@";
+  hostname = "@home@";
 in
 {
   name = "${username}@${hostname}";

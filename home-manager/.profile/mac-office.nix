@@ -9,8 +9,5 @@ in
   modules = [
     ../home/common.nix
     ../home/mac.nix
-    # {
-    #   nixpkgs.overlays = overlays;
-    # }
   ];
 }

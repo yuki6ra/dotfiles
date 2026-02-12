@@ -44,8 +44,8 @@
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
-    ".gitconfig".source = ../git/.gitconfig;
-    "nvim".source = ../../.config/nvim;
+    ".gitconfig".source = ../../.config/git/.gitconfig;
+    ".config/nvim".source = ../../.config/nvim;
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''

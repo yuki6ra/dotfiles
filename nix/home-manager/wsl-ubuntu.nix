@@ -10,7 +10,7 @@
   ];
 
   home.file = {
-    ".bashrc".source = ../../../.config/bash/.bashrc;
-    ".profile".source = ../../../.config/bash/.profile;
+    ".bashrc".source = ../../.config/bash/.bashrc;
+    ".profile".source = ../../.config/bash/.profile;
   };
 }

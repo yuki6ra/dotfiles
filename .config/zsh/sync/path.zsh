@@ -1,4 +1,26 @@
 ##############################
+# path
+##############################
+
+# mise
+export PATH="$HOME/.local/share/mise/shims:$PATH"
+
+# 補完
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+# source $(brew --prefix)/etc/bash_completion.d/az
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/sbin:$PATH"
+
+# 社用はcolimaを必ず使う
+export DOCKER_HOST="unix://${HOME}/.colima/default/docker.sock"
+
+# 社用はopensslにpathが必要
+export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
+
+##############################
 # eval
 ##############################
 
@@ -10,23 +32,3 @@ eval "$(mise activate zsh)"
 # cdをzoxideでreplace
 eval "$(zoxide init zsh --cmd cd)"
 
-##############################
-# path
-##############################
-
-# mise
-export PATH="$HOME/.local/share/mise/shims:$PATH"
-
-# 補完
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /opt/homebrew/bin/terraform terraform
-# source $(brew --prefix)/etc/bash_completion.d/az
-export PATH="$PATH:/opt/homebrew/bin"
-
-# 社用はcolimaを必ず使う
-export DOCKER_HOST="unix://${HOME}/.colima/default/docker.sock"
-
-# 社用はopensslにpathが必要
-export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"

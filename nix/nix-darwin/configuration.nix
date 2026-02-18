@@ -93,28 +93,5 @@
       "raycast"
       "visual-studio-code"
     ];
-    extraConfig = ''
-      vscode "astro-build.astro-vscode"
-      vscode "bbenoist.nix"
-      vscode "biomejs.biome"
-      vscode "esbenp.prettier-vscode"
-      vscode "hashicorp.terraform"
-      vscode "hediet.vscode-drawio"
-      vscode "mechatroner.rainbow-csv"
-      vscode "mhutchie.git-graph"
-      vscode "ms-ceintl.vscode-language-pack-ja"
-      vscode "ms-mssql.data-workspace-vscode"
-      vscode "ms-mssql.mssql"
-      vscode "ms-mssql.sql-bindings-vscode"
-      vscode "ms-mssql.sql-database-projects-vscode"
-      vscode "ms-vscode.powershell"
-      vscode "ritwickdey.liveserver"
-      vscode "shd101wyy.markdown-preview-enhanced"
-      vscode "streetsidesoftware.code-spell-checker"
-      vscode "streetsidesoftware.code-spell-checker-cspell-bundled-dictionaries"
-      vscode "sumneko.lua"
-      vscode "tamasfe.even-better-toml"
-      vscode "yzhang.markdown-all-in-one"
-    '';
   };
 }

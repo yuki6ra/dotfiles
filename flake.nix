@@ -1,5 +1,5 @@
 {
-  description = "Home Manager configuration";
+  description = "nixでやんす";
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
@@ -12,10 +12,10 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # neovim = {
+    #   url = "github:nix-community/neovim-nightly-overlay";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs = {
@@ -23,12 +23,12 @@
     nixpkgs,
     home-manager,
     nix-darwin,
-    neovim,
+    # neovim,
     ... } @inputs :
     let
-      overlays = [
-        neovim.overlays.default
-      ];
+    #   overlays = [
+    #     neovim.overlays.default
+    #   ];
       specialArgsBase = {
         inherit inputs;
       };
@@ -40,14 +40,14 @@
             pkgs = nixpkgs.legacyPackages.${system};
           in
           home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules =
-            modules
-            ++ [
-              {
-                nixpkgs.overlays = overlays;
-              }
-            ];
+          inherit pkgs modules;
+        #   modules =
+        #     modules
+        #     ++ [
+        #       {
+        #         nixpkgs.overlays = overlays;
+        #       }
+        #     ];
           extraSpecialArgs = specialArgsBase // {
             inherit user system;
           };
@@ -57,20 +57,20 @@
       darwinConfigurations = 
       let
         system = "aarch64-darwin";
-        # darwinSystemArgs = 
-        # {
-        #   profile,
-        #   username,
-        #   system,
-        # };
-        # import ./nix/nix-darwin {
-        #   inherit
-        #     inputs
-        #     profile
-        #     username
-        #     system
-        #     ;
-        # };
+#         # darwinSystemArgs = 
+#         # {
+#         #   profile,
+#         #   username,
+#         #   system,
+#         # };
+#         # import ./nix/nix-darwin {
+#         #   inherit
+#         #     inputs
+#         #     profile
+#         #     username
+#         #     system
+#         #     ;
+#         # };
       in
       {
         "mymac" = nix-darwin.lib.darwinSystem {
@@ -82,12 +82,13 @@
           specialArgs = {
             inherit inputs;
           };
-        # asu = nix-darwin.lib.darwinSystem (darwinSystemArgs {
-        #     profile = "asu";
-        #     username = "nanami";
-        #     system = "aarch64-darwin";
-        #   });
-        };
+#         # asu = nix-darwin.lib.darwinSystem (darwinSystemArgs {
+#         #     profile = "asu";
+#         #     username = "nanami";
+#         #     system = "aarch64-darwin";
+#         #   });
+#         };
       };
     };
+  };
 }

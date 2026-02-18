@@ -1,17 +1,9 @@
 { pkgs, lib,  ... }:
 
 {
-  # Necessary for using flakes on this system.
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
   system = {
-    stateVersion = 6;
-    # mac のユーザー名
-    # `whoami` で確認可能
     primaryUser = "yuki6ra";
+    stateVersion = 6;
     defaults = {
       finder = {
         AppleShowAllExtensions = true;  # ファイル拡張子を表示
@@ -31,6 +23,12 @@
     };
   };
 
+  # Necessary for using flakes on this system.
+  # nix.settings.experimental-features = [
+  #   "nix-command"
+  #   "flakes"
+  # ];
+
   nixpkgs = {
     config.allowUnfree = true;
     hostPlatform = "aarch64-darwin";
@@ -38,57 +36,62 @@
 
   homebrew = {
     enable = true;
-    onActivation.cleanup = "none";
-    # `brew tap` で確認可能
+    onActivation.cleanup = "uninstall";
     taps = [
       "hashicorp/tap"
       "xwmx/taps"
     ];
-    # `brew list --formula` で確認可能
     brews = [
+      "openssl@3"
       "awscli"
-      "graphite2"
-      "ripgrep"
       "azure-cli"
-      "harfbuzz"
-      "mise"
-      "nb"
-      "sheldon"
-      "terraform"
+      "bash-completion@2"
+      "lima"
       "colima"
       "docker"
-      "tree"
-      "bash-completion@2"
-      "tree-sitter-cli"
+      "docker-compose"
+      "fd"
       "ffmpeg"
-      "openssl@3"
       "fzf"
-      "lima"
-      "yazi"
+      "gcc"
       "git"
       "gnu-time"
+      "graphite2"
+      "harfbuzz"
+      "imagemagick"
       "lua"
-      "zoxide"
       "lua-language-server"
+      "mise"
+      "neovim"
+      "poppler"
       "presenterm"
+      "resvg"
+      "ripgrep"
+      "sevenzip"
+      "sheldon"
+      "telnet"
+      "tree"
+      "tree-sitter-cli"
+      "yazi"
+      "zoxide"
+      "hashicorp/tap/terraform"
+      "hashicorp/tap/terraform-ls"
+      "xwmx/taps/nb"
     ];
-    # `brew list --cask` で確認可能
     casks = [
-      "alt-tab"
+      # "arc"
+      # "claude"
       "discord"
-      "google-chrome"
-      "obsidian"
-      "raycast"
-      "arc"
       "font-cica"
-      "microsoft-edge"
-      "orbstack"
-      "visual-studio-code"
-      "claude"
       "ghostty"
+      "google-chrome"
+      "microsoft-edge"
       "notion"
+      "obsidian"
+      "orbstack"
       "powershell"
-      "wezterm@nightly"
+      "raycast"
+      "visual-studio-code"
     ];
   };
 }

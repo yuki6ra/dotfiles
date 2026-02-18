@@ -37,4 +37,4 @@ tgz() {
 autoload -Uz compinit && compinit
 
 # nix
-. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+# . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh

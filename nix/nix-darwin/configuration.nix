@@ -88,7 +88,7 @@
       "microsoft-edge"
       "notion"
       "obsidian"
-      "orbstack"
+      # "orbstack"
       "powershell"
       "raycast"
       "visual-studio-code"

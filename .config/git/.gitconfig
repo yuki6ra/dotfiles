@@ -1,4 +1,5 @@
 [user]
-	name = name
-	email = email
-
+    name = name
+    email = email
+[core]
+    editor = nvim

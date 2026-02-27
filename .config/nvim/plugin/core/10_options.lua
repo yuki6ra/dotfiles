@@ -1,5 +1,3 @@
-local autocmds = require('utils.autocmd')
-
 -- share clipboard with OS
 vim.opt.clipboard:append('unnamedplus,unnamed')
 vim.opt.cursorline = true
@@ -16,9 +14,8 @@ vim.opt.scrolloff = 3
 
 -- move the cursor to the previous/next line across the first/last character
 vim.opt.whichwrap = 'b,s,h,l,<,>,[,],~'
-
--- Auto mkdir on save
-autocmds.create_autocmd('BufWritePre', {
+-- Config.new_autocmd('BufWritePre', {
+vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*',
   callback = function(event)
     local dir = vim.fs.dirname(event.file)
@@ -30,3 +27,4 @@ autocmds.create_autocmd('BufWritePre', {
   end,
   desc = 'Auto mkdir to save file'
 })
+

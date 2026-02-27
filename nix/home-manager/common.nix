@@ -90,11 +90,12 @@
 
     ## tools
     ".gitconfig".source = ../../.config/git/.gitconfig;
-    ".config/nvim".source = ../../.config/nvim;
+    # ".config/nvim".source =  ../../.config/nvim;
     ".config/zeno".source = ../../.config/zeno;
     ".config/yazi".source = ../../.config/yazi;
     ".config/lazygit".source = ../../.config/lazygit;
     ".nbrc".source = ../../.config/nb/.nbrc;
+    ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${builtins.toString config.home.homeDirectory}/Documents/dotfiles/.config/nvim";
 
     ## develop
     ".config/mise".source = ../../.config/mise;
@@ -105,6 +106,8 @@
     #   org.gradle.daemon.idletimeout=3600000
     # '';
   };
+
+  fonts.fontconfig.enable = true;
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a

@@ -1,4 +1,6 @@
 [tools]
 deno = "latest"
-go = "latest"
 node = "latest"
+go = "latest"
+dotnet-core = "latest"
+

@@ -139,6 +139,20 @@ later(function()
   )
 end)
 
+-- toggleterm.nvim + lazygit
+now(function()
+  add({ source = 'https://github.com/akinsho/toggleterm.nvim' })
+  require("toggleterm").setup {}
+  local Terminal = require('toggleterm.terminal').Terminal
+  local lazygit  = Terminal:new({ cmd = "lazygit", direction = "float", hidden = true })
+
+  function _lazygit_toggle()
+    lazygit:toggle()
+  end
+
+  vim.api.nvim_set_keymap("n", "lg", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
+end)
+
 -- ファイル選択支援系
 -- ファイラ
 now(function()

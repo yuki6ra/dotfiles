@@ -4,11 +4,9 @@
 
 # homebrew
 # 社用はbrewパス生成をコメントアウト
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# eval "$(/opt/homebrew/bin/brew shellenv)"
 # mise
 eval "$(mise activate zsh)"
-# cdをzoxideでreplace
-eval "$(zoxide init zsh --cmd cd)"
 
 ##############################
 # path
@@ -33,3 +31,6 @@ export DOCKER_HOST="unix://${HOME}/.colima/default/docker.sock"
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
 # source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+# cdをzoxideでreplace
+eval "$(zoxide init zsh --cmd cd)"
+

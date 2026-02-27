@@ -1,6 +1,14 @@
-{ config, pkgs, user, ... }:
+{ config, pkgs, user, inputs, ... }:
 
 {
+  nixpkgs = {
+    # overlays = [
+    #   inputs.neovim.overlays.default;
+    # ];
+    config = {
+      allowUnfree = true;
+    };
+  };
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = user;
@@ -20,9 +28,39 @@
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
-    
-    # git
-    # neovim # nighly
+    ## shell configuration
+    zsh # default shell
+    sheldon # zsh/bash plugin manager
+
+    ## tools
+    git
+    lazygit
+    delta
+    neovim # nighly
+    yazi # file manager
+    zoxide # super cd, required zeno / yazi
+    fzf # fuzzy finder, required zeno / yazi
+    fd # search file, required yazi
+    ripgrep # super grep, required nvim / yazi
+    jq # json processer, required yazi(option)
+    resvg # svg preview, required yazi(option)
+    imagemagick # jpg preview, required yazi(option)
+    nb # cli note-taking
+    presenterm # presentation on terminal
+    # tree
+    openssl
+
+    ## develop
+    mise
+    docker
+    docker-compose
+    terraform
+    terraform-ls
+    lua
+    lua-language-server
+    azure-cli
+    awscli
+    # tree-sitter-cli これはnpmでinsltallする
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -45,8 +83,21 @@
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
+    ## shell
+    ".zshrc".source = ../../.config/zsh/.zshrc;
+    ".config/sheldon".source = ../../.config/sheldon;
+    ".config/nix".source = ../../.config/nix;
+
+    ## tools
     ".gitconfig".source = ../../.config/git/.gitconfig;
     ".config/nvim".source = ../../.config/nvim;
+    ".config/zeno".source = ../../.config/zeno;
+    ".config/yazi".source = ../../.config/yazi;
+    ".config/lazygit".source = ../../.config/lazygit;
+    ".nbrc".source = ../../.config/nb/.nbrc;
+
+    ## develop
+    ".config/mise".source = ../../.config/mise;
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''

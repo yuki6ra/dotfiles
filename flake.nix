@@ -12,10 +12,10 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # neovim = {
-    #   url = "github:nix-community/neovim-nightly-overlay";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    neovim = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -23,12 +23,12 @@
     nixpkgs,
     home-manager,
     nix-darwin,
-    # neovim,
+    neovim,
     ... } @inputs :
     let
-    #   overlays = [
-    #     neovim.overlays.default
-    #   ];
+      overlays = [
+        neovim.overlays.default
+      ];
       specialArgsBase = {
         inherit inputs;
       };
@@ -40,24 +40,24 @@
             pkgs = nixpkgs.legacyPackages.${system};
           in
           home-manager.lib.homeManagerConfiguration {
-          inherit pkgs modules;
-        #   modules =
-        #     modules
-        #     ++ [
-        #       {
-        #         nixpkgs.overlays = overlays;
-        #       }
-        #     ];
+          inherit pkgs;
+          modules =
+            modules
+            ++ [
+              {
+                nixpkgs.overlays = overlays;
+              }
+            ];
           extraSpecialArgs = specialArgsBase // {
             inherit user system;
           };
         }
       )(import ./nix/home-manager/.profile);
 
-      darwinConfigurations = 
+      darwinConfigurations =
       let
         system = "aarch64-darwin";
-#         # darwinSystemArgs = 
+#         # darwinSystemArgs =
 #         # {
 #         #   profile,
 #         #   username,

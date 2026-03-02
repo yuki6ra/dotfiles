@@ -10,13 +10,13 @@ now(function()
   --   }
   -- })
   -- vim.cmd.colorscheme('github_dark')
-  vim.pack.add({ 'https://github.com/masisz/wisteria.nvim' })
-  require('wisteria').setup({
+  vim.pack.add({ 'https://github.com/bettervim/yugen.nvim' })
+  require('yugen').setup({
     options = {
       transparent = true
     }
   })
-  vim.cmd.colorscheme('wisteria')
+  vim.cmd.colorscheme('yugen')
 
   require('mini.colors').get_colorscheme():resolve_links():add_transparency({
     general = true,

@@ -1,5 +1,13 @@
 {
   "plugins": {
+    "koda.nvim": {
+      "rev": "c94415d9c63c1519216fe195ae957974e7e3250c",
+      "src": "https://github.com/oskarnurm/koda.nvim"
+    },
+    "miasma.nvim": {
+      "rev": "627f2e1cac91de0d1d4dd7472b506a30f41b2b7d",
+      "src": "https://github.com/xero/miasma.nvim"
+    },
     "mini.nvim": {
       "rev": "a95dc67ecff78de138543a20c20f29f47111b122",
       "src": "https://github.com/nvim-mini/mini.nvim"
@@ -16,6 +24,10 @@
       "rev": "2d3f3276eab9352c7b212821c218aca986929f62",
       "src": "https://github.com/stevearc/quicker.nvim"
     },
+    "snacks.nvim": {
+      "rev": "fe7cfe9800a182274d0f868a74b7263b8c0c020b",
+      "src": "https://github.com/folke/snacks.nvim"
+    },
     "toggleterm.nvim": {
       "rev": "9a88eae817ef395952e08650b3283726786fb5fb",
       "src": "https://github.com/akinsho/toggleterm.nvim"
@@ -31,6 +43,10 @@
     "wisteria.nvim": {
       "rev": "9d2ff53f31b8a17de82531ea2376e258ad500f4d",
       "src": "https://github.com/masisz/wisteria.nvim"
+    },
+    "yugen.nvim": {
+      "rev": "cfd97621c2f724443346ae841facaf4e00410e5a",
+      "src": "https://github.com/bettervim/yugen.nvim"
     }
   }
 }

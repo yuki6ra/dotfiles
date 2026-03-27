@@ -16,6 +16,7 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    arto.url = "github:arto-app/Arto";
   };
 
   outputs = {
@@ -24,6 +25,7 @@
     home-manager,
     nix-darwin,
     neovim,
+    arto,
     ... } @inputs :
     let
       overlays = [
@@ -57,20 +59,6 @@
       darwinConfigurations =
       let
         system = "aarch64-darwin";
-#         # darwinSystemArgs =
-#         # {
-#         #   profile,
-#         #   username,
-#         #   system,
-#         # };
-#         # import ./nix/nix-darwin {
-#         #   inherit
-#         #     inputs
-#         #     profile
-#         #     username
-#         #     system
-#         #     ;
-#         # };
       in
       {
         "mymac" = nix-darwin.lib.darwinSystem {
@@ -78,6 +66,11 @@
           modules = [
             ./nix/nix-darwin/configuration.nix
             home-manager.darwinModules.home-manager
+            {
+                environment.systemPackages = [
+                  arto.packages.${system}.default
+                ];
+            }
           ];
           specialArgs = {
             inherit inputs;

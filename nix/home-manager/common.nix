@@ -36,6 +36,7 @@
     git
     lazygit
     delta
+    ghq
     neovim # nighly
     yazi # file manager
     zoxide # super cd, required zeno / yazi
@@ -56,8 +57,6 @@
     docker-compose
     terraform
     terraform-ls
-    lua
-    lua-language-server
     azure-cli
     awscli
     # tree-sitter-cli これはnpmでinsltallする

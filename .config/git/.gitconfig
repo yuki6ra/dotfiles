@@ -11,5 +11,6 @@
     dark = true
     line-numbers = true
 [merge]
-    conflictStyle = zdiff3
-
+  conflictStyle = zdiff3
+[ghq]
+  root = ~/Documents/ghq

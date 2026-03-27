@@ -7,6 +7,7 @@
   home.packages = with pkgs; [
     # gnu-time # linux time, macのみで良さそう
     colima
+    pngpaste
   ];
 
   home.file = {

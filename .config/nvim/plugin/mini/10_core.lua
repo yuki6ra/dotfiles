@@ -10,13 +10,14 @@ now(function()
   --   }
   -- })
   -- vim.cmd.colorscheme('github_dark')
-  vim.pack.add({ 'https://github.com/bettervim/yugen.nvim' })
-  require('yugen').setup({
-    options = {
-      transparent = true
+  vim.pack.add({ 'https://gitlab.com/motaz-shokry/gruvbox.nvim' })
+  require('gruvbox').setup({
+    variant = "hard",
+    styles = {
+      transparency = true
     }
   })
-  vim.cmd.colorscheme('yugen')
+  vim.cmd.colorscheme('gruvbox')
 
   require('mini.colors').get_colorscheme():resolve_links():add_transparency({
     general = true,
@@ -124,6 +125,44 @@ end)
 now(function()
   require('mini.starter').setup()
 end)
+
+local ms = require('mini.statusline')
+
+ms.section_filename = function(args)
+  args = args or {}
+  local trunc_width = args.trunc_width or 140
+
+  -- 幅が狭いときはデフォルト同様に短い表示
+  if ms.is_truncated(trunc_width) then
+    return vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t')
+  end
+
+  local fullpath = vim.api.nvim_buf_get_name(0)
+  if fullpath == '' then
+    return ''
+  end
+
+  local home = vim.env.HOME or ''
+  local ghq_root = home .. '/Documents/ghq/'
+
+  -- ghq 管理下かどうか判定
+  if fullpath:sub(1, #ghq_root) == ghq_root then
+    -- ghq_root からの相対パス: host/owner/repo/...
+    local rel = fullpath:sub(#ghq_root + 1)
+
+    -- host / owner を飛ばして repo から始める
+    local parts = vim.split(rel, '/', { plain = true, trimempty = true })
+    if #parts >= 3 then
+      -- parts[1]=host, [2]=owner, [3]=repo
+      rel = table.concat(vim.list_slice(parts, 3), '/')
+    end
+
+    return rel
+  end
+
+  -- ghq 管理下以外は普通に ~ 相対 or cwd 相対で表示
+  return vim.fn.fnamemodify(fullpath, ':~:.')
+end
 
 -- statusl line
 now(function()

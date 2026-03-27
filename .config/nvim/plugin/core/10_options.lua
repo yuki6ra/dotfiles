@@ -12,6 +12,13 @@ vim.opt.tabstop = 2
 -- scroll offset as 3 lines
 vim.opt.scrolloff = 3
 
+-- Prepend mise shims to PATH
+-- ref: https://mise.jdx.dev/ide-integration.html#neovim
+vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
+
+-- 画面端のコードを折り返す
+vim.opt.wrap = true
+
 -- move the cursor to the previous/next line across the first/last character
 vim.opt.whichwrap = 'b,s,h,l,<,>,[,],~'
 -- Config.new_autocmd('BufWritePre', {

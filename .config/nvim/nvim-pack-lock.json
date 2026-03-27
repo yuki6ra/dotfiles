@@ -1,8 +1,28 @@
 {
   "plugins": {
+    "arto.vim": {
+      "rev": "b05936238ff835ceca43442bf4ab8e843e73815c",
+      "src": "https://github.com/arto-app/arto.vim"
+    },
+    "gruvbox.nvim": {
+      "rev": "9d0e3af224c5492069a493bb43c6ec2b78497454",
+      "src": "https://gitlab.com/motaz-shokry/gruvbox.nvim"
+    },
+    "holon.nvim": {
+      "rev": "ca1c83fd99a31eca43274b9927a3353f2a02c718",
+      "src": "https://github.com/sunbluesome/holon.nvim"
+    },
     "koda.nvim": {
       "rev": "c94415d9c63c1519216fe195ae957974e7e3250c",
       "src": "https://github.com/oskarnurm/koda.nvim"
+    },
+    "markdown-preview.nvim": {
+      "rev": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee",
+      "src": "https://github.com/iamcco/markdown-preview.nvim"
+    },
+    "markview.nvim": {
+      "rev": "633e627f82011dc888ea4444a98c98bd783951b0",
+      "src": "https://github.com/OXY2DEV/markview.nvim"
     },
     "miasma.nvim": {
       "rev": "627f2e1cac91de0d1d4dd7472b506a30f41b2b7d",
@@ -18,11 +38,21 @@
     },
     "nvim-treesitter": {
       "rev": "ae2081cfcd3719d74b600f8377e4a99d1ec19c4a",
-      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter",
+      "version": "'main'"
+    },
+    "obsidian.nvim": {
+      "rev": "5392f49c755d28e663147bc6012f0d8545b326cf",
+      "src": "https://github.com/obsidian-nvim/obsidian.nvim",
+      "version": ">=0.0.0"
     },
     "quicker.nvim": {
       "rev": "2d3f3276eab9352c7b212821c218aca986929f62",
       "src": "https://github.com/stevearc/quicker.nvim"
+    },
+    "render-markdown.nvim": {
+      "rev": "1641b434bda26e0f4e3610985b3357fc213cf834",
+      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "snacks.nvim": {
       "rev": "fe7cfe9800a182274d0f868a74b7263b8c0c020b",

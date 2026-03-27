@@ -1,6 +1,12 @@
 [tools]
+lua = "latest"
 deno = "latest"
 node = "latest"
 go = "latest"
 dotnet-core = "latest"
+terraform = "latest"
+
+tree-sitter = "latest"
+lua-language-server = "latest"
+terraform-ls = "latest"
 

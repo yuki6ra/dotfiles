@@ -4,6 +4,9 @@ local later = Config.later
 later(function()
   local hipatterns = require('mini.hipatterns')
   local hi_words = require('mini.extra').gen_highlighter.words
+  -- ハイライトグループの追加
+  vim.api.nvim_set_hl(0, 'MiniHipatternsTbd', { bg = '#656bc9', bold = true })
+
   hipatterns.setup({
     highlighters = {
       -- 特定の文字列をハイライト
@@ -11,6 +14,7 @@ later(function()
       hack = hi_words({ 'HACK', 'Hack', 'hack' }, 'MiniHipatternsHack'),
       todo = hi_words({ 'TODO', 'Todo', 'todo' }, 'MiniHipatternsTodo'),
       note = hi_words({ 'NOTE', 'Note', 'note' }, 'MiniHipatternsNote'),
+      tbd = hi_words({ 'TBD', 'Tbd', 'tbd' }, 'MiniHipatternsTbd'),
       -- 16進数カラーコードをハイライト
       hex_color = hipatterns.gen_highlighter.hex_color(),
     }
@@ -56,6 +60,11 @@ later(function()
     end,
     { desc = 'Remove buffer' }
   )
+end)
+
+-- 自動保管機能
+later(function()
+  require('mini.cmdline').setup()
 end)
 
 -- 移動表示を見やすくする

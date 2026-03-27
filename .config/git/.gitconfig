@@ -1,0 +1,16 @@
+[user]
+    name = name
+    email = email
+[core]
+    editor = nvim
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true
+    dark = true
+    line-numbers = true
+[merge]
+  conflictStyle = zdiff3
+[ghq]
+  root = ~/Documents/ghq

@@ -6,3 +6,6 @@ home/git/.gitconfig
 
 # Brewfile
 **/Brewfile.lock.json
+
+# other
+**/**/.env

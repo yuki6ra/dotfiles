@@ -13,4 +13,3 @@ now(function()
 
   vim.api.nvim_set_keymap("n", "lg", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
 end)
-

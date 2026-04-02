@@ -212,7 +212,7 @@ now(function()
       -- ウィンドウ固有の設定をカスタマイズ
       vim.wo[win_id].winblend = 0
       local config = vim.api.nvim_win_get_config(win_id)
-      config.border, config.title_pos = 'double', 'right'
+      config.border, config.title_pos = 'double', 'left'
       vim.api.nvim_win_set_config(win_id, config)
     end,
   })

@@ -12,11 +12,11 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim = {
-      url = "github:nix-community/neovim-nightly-overlay";
+   arto.url = "github:arto-app/Arto";
+    gh-prism = {
+      url = "github:kawarimidoll/gh-prism";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    arto.url = "github:arto-app/Arto";
   };
 
   outputs = {
@@ -24,13 +24,9 @@
     nixpkgs,
     home-manager,
     nix-darwin,
-    neovim,
     arto,
     ... } @inputs :
     let
-      overlays = [
-        neovim.overlays.default
-      ];
       specialArgsBase = {
         inherit inputs;
       };
@@ -44,12 +40,12 @@
           home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules =
-            modules
-            ++ [
-              {
-                nixpkgs.overlays = overlays;
-              }
-            ];
+            modules;
+          #   ++ [
+          #     {
+          #       nixpkgs.overlays = overlays;
+          #     }
+          #   ];
           extraSpecialArgs = specialArgsBase // {
             inherit user system;
           };
@@ -61,7 +57,7 @@
         system = "aarch64-darwin";
       in
       {
-        "mymac" = nix-darwin.lib.darwinSystem {
+        "NAKAMURA-N-LYFJ4WK6TV-MAC" = nix-darwin.lib.darwinSystem {
           system = system;
           modules = [
             ./nix/nix-darwin/configuration.nix

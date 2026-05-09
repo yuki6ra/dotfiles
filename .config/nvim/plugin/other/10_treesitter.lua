@@ -11,7 +11,7 @@ now_if_args(function()
       version = 'main'
     }
   })
-require("nvim-treesitter").setup({})
+  require("nvim-treesitter").setup({})
   require('nvim-treesitter').install({
     'lua', 'vim',
     'tsx', 'jsx',

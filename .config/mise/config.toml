@@ -9,4 +9,5 @@ terraform = "latest"
 tree-sitter = "latest"
 lua-language-server = "latest"
 terraform-ls = "latest"
+pnpm = "latest"
 

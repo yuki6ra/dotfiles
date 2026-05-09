@@ -40,8 +40,10 @@
     taps = [
       # "hashicorp/tap"
       # "xwmx/taps"
+      "PerryTS/perry"
     ];
     brews = [
+      "perry"
       # "openssl@3"
       # "awscli"
       # "azure-cli"
@@ -80,7 +82,7 @@
     ];
     casks = [
       # "arc"
-      # "claude"
+      "claude"
       "discord"
       "font-cica"
       "ghostty"

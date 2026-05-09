@@ -1,7 +1,7 @@
 { config, pkgs, user, inputs, ... }:
 
 {
-  nixpkgs = {
+   nixpkgs = {
     # overlays = [
     #   inputs.neovim.overlays.default;
     # ];
@@ -33,6 +33,7 @@
     sheldon # zsh/bash plugin manager
 
     ## tools
+    claude-code
     git
     lazygit
     delta
@@ -48,11 +49,12 @@
     imagemagick # jpg preview, required yazi(option)
     nb # cli note-taking
     presenterm # presentation on terminal
-    # tree
+    tree
     openssl
 
     ## develop
     mise
+    claude-code
     docker
     docker-compose
     terraform
@@ -88,7 +90,8 @@
     ".config/nix".source = ../../.config/nix;
 
     ## tools
-    ".gitconfig".source = ../../.config/git/.gitconfig;
+    ".gitconfig".source = config.lib.file.mkOutOfStoreSymlink "${builtins.toString config.home.homeDirectory}/Documents/dotfiles/.config/git/.gitconfig";
+    # ".config/gh".source =  config.lib.file.mkOutOfStoreSymlink "${builtins.toString config.home.homeDirectory}/Documents/dotfiles/.config/gh";
     # ".config/nvim".source =  ../../.config/nvim;
     ".config/zeno".source = ../../.config/zeno;
     ".config/yazi".source = ../../.config/yazi;
@@ -124,6 +127,10 @@
   #
   #  /etc/profiles/per-user/nakamura-yuki/etc/profile.d/hm-session-vars.sh
   #
-  # Let Home Manager install and manage itself.
+  imports = [ inputs.gh-prism.homeManagerModules.default ];
+ # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  programs.gh.enable = true;
+  programs.gh-prism.enable = true;
+  # programs.claude-code.enable = true;
 }

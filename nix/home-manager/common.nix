@@ -51,17 +51,17 @@
     presenterm # presentation on terminal
     tree
     openssl
+    git-secrets
 
     ## develop
     mise
-    claude-code
     docker
     docker-compose
     terraform
     terraform-ls
     azure-cli
     awscli
-    # tree-sitter-cli これはnpmでinsltallする
+    yaml-language-server
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the

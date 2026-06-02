@@ -35,3 +35,6 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   desc = 'Auto mkdir to save file'
 })
 
+-- nvimに`*/tf`ファイルをterraformだと認識してもらう
+-- https://zenn.dev/link/comments/80e6160ec069f7
+vim.cmd("autocmd BufNewFile,BufRead *.tf set filetype=terraform")

@@ -37,15 +37,21 @@ later(function()
   -- LspAttach keymap
   local augroup = vim.api.nvim_create_augroup('user-lsp', {})
 
+  -- 言語サーバーがアタッチされた時に呼ばれる
   vim.api.nvim_create_autocmd('LspAttach', {
     group = augroup,
     callback = function(args)
       local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
+      -- 以降、言語サーバーのclientが、LSPで定められた機能を実装していたら適用される
       if client:supports_method('textDocument/definition') then
-        vim.keymap.set('n', 'grd', function()
-          vim.lsp.buf.definition()
-        end, { buffer = args.buf, desc = 'vim.lsp.buf.definition()' })
+        vim.keymap.set('n', 'grd', vim.lsp.buf.definition, { buffer = args.buf, desc = 'vim.lsp.buf.definition()' })
+      end
+
+      if client:supports_method('textDocument/hover') then
+        vim.keymap.set("n", "<leader>k", function()
+          vim.lsp.buf.hover({ border = "single" })
+        end, { buffer = args.buf, desc = "vim.lsp.buf.hover()" })
       end
 
       if client:supports_method('textDocument/formatting') then
@@ -67,4 +73,3 @@ later(function()
   -- 有効にしたいサーバーを列挙
   vim.lsp.enable(lsp_names)
 end)
-

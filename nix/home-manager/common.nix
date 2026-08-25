@@ -39,14 +39,9 @@
     delta
     ghq
     neovim # nighly
-    yazi # file manager
-    zoxide # super cd, required zeno / yazi
-    fzf # fuzzy finder, required zeno / yazi
-    fd # search file, required yazi
-    ripgrep # super grep, required nvim / yazi
-    jq # json processer, required yazi(option)
-    resvg # svg preview, required yazi(option)
-    imagemagick # jpg preview, required yazi(option)
+    zoxide # super cd, required zeno
+    fzf # fuzzy finder, required zeno
+    ripgrep # super grep, required nvim
     nb # cli note-taking
     presenterm # presentation on terminal
     tree
@@ -94,7 +89,6 @@
     # ".config/gh".source =  config.lib.file.mkOutOfStoreSymlink "${builtins.toString config.home.homeDirectory}/Documents/dotfiles/.config/gh";
     # ".config/nvim".source =  ../../.config/nvim;
     ".config/zeno".source = ../../.config/zeno;
-    ".config/yazi".source = ../../.config/yazi;
     ".config/lazygit".source = ../../.config/lazygit;
     ".nbrc".source = ../../.config/nb/.nbrc;
     ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${builtins.toString config.home.homeDirectory}/Documents/dotfiles/.config/nvim";

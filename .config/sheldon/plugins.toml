@@ -1,46 +1,56 @@
-# `sheldon` configuration file
-# ----------------------------
-#
-# You can modify this file directly or you can use one of the following
-# `sheldon` commands which are provided to assist in editing the config file:
-#
-# - `sheldon add` to add a new plugin to the config file
-# - `sheldon edit` to open up the config file in the default editor
-# - `sheldon remove` to remove a plugin from the config file
-#
-# See the documentation for more https://github.com/rossmacarthur/sheldon#readme
-
+# note:  sheldonは定義された順序でpluginsを処理する
 shell = "zsh"
 
+# 遅延読み込み設定
+# ref: https://sheldon.cli.rs/Examples.html?search=post
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
-apply = ['source']
 
 [templates]
-defer = '''
-{% for file in files %}zsh-defer source "{{ file }}"
-{% endfor %}'''
+defer = "{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}{{ hooks?.post | nl }}"
 
-# [plugins.zsh-autosuggestions]
-# github = "zsh-users/zsh-autosuggestions"
-# use = ["{{ name }}.zsh"]
-
+# zshファイルに記載のcompinitより前に反映
 [plugins.zsh-completions]
 github = "zsh-users/zsh-completions"
-
-[plugins.fast-syntax-highlighting]
-github = "zdharma-continuum/fast-syntax-highlighting"
-
-[plugins.dotfiles-defer]
-local = "~/Documents/dotfiles/.config/zsh"
-use = ["{!sync,*}.zsh"]
-apply = ["defer"]
 
 [plugins.dotfiles-sync]
 local = "~/Documents/dotfiles/.config/zsh/sync"
 use = ["*.zsh"]
 apply = ["source"]
 
+[plugins.dotfiles-defer]
+local = "~/Documents/dotfiles/.config/zsh/defer"
+use = ["*.zsh"]
+apply = ["defer"]
+
+[plugins.minimal]
+github = "subnixr/minimal"
+# promptのカスタマイズ
+hooks.post = '''
+  MNML_INSERT_CHAR='❯'
+  MNML_RPROMPT=(mnml_git mnml_datetime)
+
+  function mnml_datetime {
+    local _w="%{\e[0m%}"
+    local _g="%{\e[38;5;244m%}"
+    local now="$(TZ=Asia/Tokyo date +%T)"
+    local ymd="$(TZ=Asia/Tokyo date +%F)"
+    printf '%b' "$_g$ymd$_w $_g$now"
+  }
+
+  () {
+    local emoji=('🐶' '🐱' '🐙' '🍺' '🍵' '🍣' '👻' '🌟')
+    MNML_USER_CHAR=$emoji[($RANDOM % $#emoji + 1)]
+  }
+'''
+
 [plugins.zeno]
 github = "yuki-yano/zeno.zsh"
+use = ["zeno-plugin.zsh"]
+apply = ["defer"]
+
+# 他pluginが定義するwidget/hookをハイライトするため、最後に配置
+[plugins.fast-syntax-highlighting]
+github = "zdharma-continuum/fast-syntax-highlighting"
+apply = ["defer"]
 

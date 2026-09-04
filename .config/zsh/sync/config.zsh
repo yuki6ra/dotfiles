@@ -17,25 +17,8 @@ bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward
 
 ##############################
-# tar
-##############################
-
-# tarballへ特殊ファイルを含めないようにする
-tgz() {
-  if [ $# -lt 2 ]; then
-    echo "Usage: tgz DIST SOURCE"
-  else
-    xattr -rc "${@:2}" && \
-    env COPYFILE_DISABLE=1 tar zcvf "$1" --exclude=".DS_Store" "${@:2}"
-  fi
-}
-
-##############################
 # git
 ##############################
-# gitの自動補完
-autoload -Uz compinit && compinit
-
 # nix
 # . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 

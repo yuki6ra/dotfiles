@@ -1,7 +1,5 @@
+# 色付き表示
 alias ls="ls -G"
+# lazygit
 alias lg="lazygit"
-export PATH="$PATH:/opt/homebrew/bin"
-export PATH="$PATH:/opt/homebrew/sbin"
-
-alias brew='sudo -Hiu yuki6ra brew'
 

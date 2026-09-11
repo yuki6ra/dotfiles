@@ -1,10 +1,12 @@
-# gitの自動補完
-autoload -Uz compinit && compinit
+# gitの自動補完(セキュリティチェックの日次キャッシュ化)
+autoload -Uz compinit
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
 
-##############################
-# tar
-##############################
-
+### 特殊ファイルDS_Store
 # tarballへ特殊ファイルを含めないようにする
 tgz() {
   if [ $# -lt 2 ]; then
@@ -15,11 +17,13 @@ tgz() {
   fi
 }
 
-### path
 ## 補完
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
-# mise
+# mise有効化
 eval "$(mise activate zsh)"
+
+# cdをzoxideでreplace
+eval "$(zoxide init zsh --cmd cd)"
 

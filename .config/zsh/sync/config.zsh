@@ -1,28 +1,20 @@
 # 新しいコマンドを即認識させる
 zstyle ":completion:*:commands" rehash 1
+
 # ファイル名補完後にスペースを消さない
-ZLE_REMOVE_SUFFIX_CHARS=$''
+export ZLE_REMOVE_SUFFIX_CHARS=$''
 
-##############################
 # history
-##############################
+export HISTFILE=~/.zsh_history
+export HISTSIZE=2000
+export SAVEHIST=2000
+setopt hist_reduce_blanks   # 保存時に余分な空白を圧縮
+setopt hist_ignore_all_dups # 重複を全て削除
+setopt hist_verify          # !!展開時に即実行しない
+setopt share_history        # 同時に起動しているzshで履歴を共有する
+setopt extended_history     # タイムスタンプ記録
+setopt inc_append_history   # 即時追記（share_history と併用）
 
-HISTFILE=~/.zsh_history
-HISTSIZE=1000
-SAVEHIST=1000
-setopt share_history          # 同時に起動したzshで履歴を共有する
-setopt hist_ignore_dups       # 同じコマンドを履歴に残さない
-setopt hist_expire_dups_first # ヒストリーが削られる場合、以前入力した同じものを先に削除する
-bindkey '^[[A' history-search-backward
-bindkey '^[[B' history-search-forward
-
-##############################
-# git
-##############################
 # nix
 # . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-
-# default editor
-export EDITOR="nvim"
-export XDG_CONFIG_HOME="$HOME/.config"
 

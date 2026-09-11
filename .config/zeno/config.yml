@@ -1,62 +1,51 @@
 snippets:
-  # snippet and keyword abbrev
-  - name: git status
-    keyword: gs
-    snippet: git status --short --branch
+  # 例: mkdir hoge CD<space>
+  # 末尾テキストをディレクトリ名として移動する
+  - name: cd there
+    keyword: CD
+    snippet: "&& cd $_"
+    context:
+      lbuffer: '.+\s'
 
-  # snippet with placeholder
-  - name: git commit message
-    keyword: gcm
-    snippet: git commit -m '{{commit_message}}'
+  # 例: cat hoge.md CC<space>
+  # 出力結果をクリップボードにコピーする
+  - name: copy
+    keyword: CC
+    snippet: "| pbcopy"
+    context:
+      lbuffer: '.+\s'
 
+  # 例: ls G<space> md
+  # grepするパイプの追加
+  - name: grep
+    keyword: G
+    snippet: "| grep"
+    context:
+      lbuffer: '.+\s'
+
+  # 例: ./hoge.sh NULL<space>
+  # 成功出力だけするやつ
   - name: "null"
     keyword: "null"
     snippet: ">/dev/null 2>&1"
-    # auto expand condition
-    # If not defined, it is only valid at the beginning of a line.
+    # auto expand 条件
+    # 未定義なら行頭でのみ有効
     context:
       # buffer: ''
       lbuffer: '.+\s'
       # rbuffer: ''
 
-  - name: branch
-    keyword: B
-    snippet: git symbolic-ref --short HEAD
-    context:
-      lbuffer: '^git\s+checkout\s+'
-    evaluate: true # eval snippet
+  # コマンド省略
+  - name: claude code
+    keyword: cc
+    snippet: "claude"
 
-completions:
-  # simple sourceCommand, no callback
-  - name: kill signal
-    patterns:
-      - "^kill -s $"
-    sourceCommand: "kill -l | tr ' ' '\\n'"
-    options:
-      --prompt: "'Kill Signal> '"
+  - name: my ip address
+    keyword: myip
+    snippet: "curl ifconfig.me"
 
-  # use excludePatterns and callback
-  - name: kill pid
-    patterns:
-      - "^kill( .*)? $"
-    excludePatterns:
-      # -l, -n or -s is followed by SIGNAL instead of PID
-      - " -[lns] $"
-    sourceCommand: "LANG=C ps -ef | sed 1d"
-    options:
-      --multi: true
-      --prompt: "'Kill Process> '"
-    callback: "awk '{print $2}'"
+  - name: today
+    keyword: td
+    snippet: date +%Y-%m-%d
+    evaluate: true
 
-  # Use null (\0) termination Input / Output
-  - name: chdir
-    patterns:
-      - "^cd $"
-    sourceCommand: "find . -path '*/.git' -prune -o -maxdepth 5 -type d -print0"
-    options:
-      # Added --read0 if null termination is used in `sourceCommand` output.
-      --read0: true
-      --prompt: "'Chdir> '"
-      --preview: "cd {} && ls -a | sed '/^[.]*$/d'"
-    callback: "cut -z -c 3-"
-    callbackZero: true # null termination is used in `callback` I/O

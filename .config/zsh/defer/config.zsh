@@ -21,9 +21,9 @@ tgz() {
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
-# mise有効化
-eval "$(mise activate zsh)"
-
 # cdをzoxideでreplace
 eval "$(zoxide init zsh --cmd cd)"
+
+# mise有効化
+eval "$(mise activate zsh)"
 

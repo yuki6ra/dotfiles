@@ -36,6 +36,10 @@ snippets:
       # rbuffer: ''
 
   # コマンド省略
+  - name: nvim current directory
+    keyword: nv
+    snippet: "nvim ."
+
   - name: claude code
     keyword: cc
     snippet: "claude"

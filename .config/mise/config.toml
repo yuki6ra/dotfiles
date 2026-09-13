@@ -3,7 +3,6 @@ lua = "latest"
 deno = "latest"
 node = "latest"
 go = "latest"
-dotnet-core = "latest"
 terraform = "latest"
 
 tree-sitter = "latest"

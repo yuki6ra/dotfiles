@@ -42,8 +42,6 @@
     zoxide # super cd, required zeno
     fzf # fuzzy finder, required zeno
     ripgrep # super grep, required nvim
-    nb # cli note-taking
-    presenterm # presentation on terminal
     tree
     openssl
     git-secrets
@@ -81,6 +79,7 @@
     # ".screenrc".source = dotfiles/screenrc;
     ## shell
     ".zshrc".source = ../../.config/zsh/.zshrc;
+    ".zshenv".source = ../../.config/zsh/.zshenv;
     ".config/sheldon".source = ../../.config/sheldon;
     ".config/nix".source = ../../.config/nix;
 
@@ -90,8 +89,7 @@
     # ".config/nvim".source =  ../../.config/nvim;
     ".config/zeno".source = ../../.config/zeno;
     ".config/lazygit".source = ../../.config/lazygit;
-    ".nbrc".source = ../../.config/nb/.nbrc;
-    ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${builtins.toString config.home.homeDirectory}/Documents/dotfiles/.config/nvim";
+    ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${builtins.toString config.home.homeDirectory}/Documents/ghq/github.com/yuki6ra/nvim";
 
     ## develop
     ".config/mise".source = ../../.config/mise;

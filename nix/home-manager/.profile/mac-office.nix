@@ -3,7 +3,7 @@ let
   hostname = "@home@";
 in
 {
-  name = "${username}@${hostname}";
+  name = "${username}";
   user = "${username}";
   system = "aarch64-darwin";
   modules = [

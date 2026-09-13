@@ -1,0 +1,27 @@
+# mise / Python
+.venv/
+__pycache__/
+*.py[cod]
+
+# mise のローカル上書き（認証情報などを置く。コミットしない）
+mise.local.toml
+.mise.local.toml
+
+# 認証情報を含む環境変数ファイル（絶対にコミットしない）
+env
+.env
+.env.*
+*.env
+env.sh
+secrets.*
+
+# 実行成果物
+apply.json
+plan.json
+*.report.json
+requirements.lock.txt
+
+# 実データの入力ファイル（samples/ の例は追跡する）
+/hosts*.csv
+/hosts*.yaml
+/hosts*.yml

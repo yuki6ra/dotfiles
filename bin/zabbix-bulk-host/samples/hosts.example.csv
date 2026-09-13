@@ -1,0 +1,13 @@
+# Zabbix ホスト一括登録 入力サンプル（CSV）
+# - 先頭が # の行はコメント
+# - セル内の複数値は「;」区切り（IP やホスト名にカンマ・空白が混ざっても壊れないため）
+# - tags / macros は「キー=値」を「;」で連結
+host,name,groups,templates,interface_type,interface_useip,interface_ip,interface_dns,interface_port,snmp_version,snmp_community,tags,macros,status,description,inventory_mode,proxy,proxy_group
+web01.example.jp,Web サーバー 01,Linux servers;Prod/Web,Linux by Zabbix agent,agent,1,192.168.10.11,,10050,,,env=prod;role=web,{$SITE}=tokyo;{$CPU_WARN}=80,enabled,EC 本番 Web #1,manual,,
+web02.example.jp,Web サーバー 02,Linux servers;Prod/Web,Linux by Zabbix agent,agent,1,192.168.10.12,,10050,,,env=prod;role=web,{$SITE}=tokyo;{$CPU_WARN}=80,enabled,EC 本番 Web #2,manual,,
+db01.example.jp,DB サーバー 01,Linux servers;Prod/DB,Linux by Zabbix agent;MySQL by Zabbix agent,agent,1,192.168.20.11,,10050,,,env=prod;role=db,{$SITE}=tokyo;{$MYSQL.USER}=zbx_monitor,enabled,MySQL プライマリ,manual,,
+db02.example.jp,DB サーバー 02,Linux servers;Prod/DB,Linux by Zabbix agent;MySQL by Zabbix agent,agent,1,192.168.20.12,,10050,,,env=prod;role=db,{$SITE}=tokyo;{$MYSQL.USER}=zbx_monitor,disabled,MySQL レプリカ（構築中）,manual,,
+sw-core01,コアスイッチ 01,Network devices,Network Generic Device by SNMP,snmp,1,192.168.0.1,,161,2,{$SNMP_COMMUNITY},env=prod;role=network,{$SNMP_COMMUNITY}=public,enabled,データセンター コアスイッチ,automatic,,
+sw-core02,コアスイッチ 02,Network devices,Network Generic Device by SNMP,snmp,1,192.168.0.2,,161,2,{$SNMP_COMMUNITY},env=prod;role=network,{$SNMP_COMMUNITY}=public,enabled,データセンター コアスイッチ,automatic,,
+batch01.example.jp,バッチサーバー 01,Linux servers;Prod/Batch,Linux by Zabbix agent,agent,0,,batch01.example.jp,10050,,,env=prod;role=batch,{$SITE}=osaka,enabled,DNS 名で監視する例,manual,,
+stg-web01.example.jp,STG Web 01,Linux servers;Staging,Linux by Zabbix agent,agent,1,10.20.30.11,,10050,,,env=staging;role=web,{$SITE}=staging,enabled,,manual,,

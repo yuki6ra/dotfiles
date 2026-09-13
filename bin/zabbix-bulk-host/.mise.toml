@@ -1,0 +1,98 @@
+# mise 設定 — このディレクトリをスコープとする Python 環境
+#
+#   cd zabbix-bulk-host
+#   mise trust          # 初回のみ（設定ファイルの信頼登録）
+#   mise install        # Python を用意し .venv を作成
+#   mise run install    # pip で依存を導入
+#
+# .venv はこのディレクトリ配下に作られ、cd で自動的に有効化／無効化される。
+# したがって pip は常にプロジェクト専用の .venv 側を指し、
+# システムや他プロジェクトの Python を汚さない。
+
+min_version = "2024.9.5"
+
+[tools]
+# 環境変数 PYTHON_VERSION があればそれを使う（CI で複数バージョンを回すため）
+python = "{{ get_env(name='PYTHON_VERSION', default='3.12') }}"
+
+[env]
+PROJECT_NAME = "{{ config_root | basename }}"
+
+# ディレクトリに入ると .venv を自動作成・自動有効化する。
+# venv 標準の pip がそのまま使えるようになる（uv は不要）。
+_.python.venv = { path = ".venv", create = true }
+
+# 実行対象の Zabbix。実値は各自の環境に合わせて上書きする。
+# 認証情報（ZABBIX_TOKEN / ZABBIX_PASSWORD）はここには書かない。
+#   → シェルの環境変数、または mise.local.toml（.gitignore 済み）で設定する
+ZABBIX_URL = "{{ get_env(name='ZABBIX_URL', default='http://127.0.0.1:18080') }}"
+
+# --------------------------------------------------------------------------
+# タスク（mise tasks で一覧、mise run <名前> で実行）
+# --------------------------------------------------------------------------
+
+[tasks.install]
+description = "pip で依存パッケージを導入する"
+alias = "i"
+run = [
+  "python -m pip install --upgrade pip",
+  "python -m pip install -r requirements.txt",
+]
+
+[tasks.info]
+description = "使用中の Python / pip / venv を表示する"
+run = '''
+echo "project : $PROJECT_NAME"
+echo "python  : $(which python)  ($(python -V 2>&1))"
+echo "pip     : $(which pip)     ($(pip -V))"
+echo "venv    : ${VIRTUAL_ENV:-（未有効）}"
+'''
+
+[tasks.freeze]
+description = "現在の依存を requirements.lock.txt に固定する"
+run = "python -m pip freeze --exclude-editable > requirements.lock.txt"
+
+[tasks.test]
+description = "単体・結合テストを実行する（実 Zabbix 不要）"
+alias = "t"
+run = "python tests/test_zbx_bulk_host.py"
+
+[tasks.mock]
+description = "モック Zabbix API サーバーを起動する（Ctrl-C で停止）"
+run = "python tests/mock_zabbix_server.py ${MOCK_PORT:-18080}"
+
+[tasks.e2e]
+description = "モック API に対する通しテスト（apply → 再実行で全件 NOOP）"
+depends = ["test"]
+run = '''
+set -eu
+PORT="${MOCK_PORT:-18080}"
+python tests/mock_zabbix_server.py "$PORT" &
+MOCK_PID=$!
+trap 'kill "$MOCK_PID" 2>/dev/null || true' EXIT
+sleep 2
+
+export ZABBIX_URL="http://127.0.0.1:${PORT}"
+export ZABBIX_TOKEN="dummy-token-for-mock"
+
+echo "--- 1 回目: apply ---"
+python zbx_bulk_host.py apply samples/hosts.example.csv --create-groups -q
+echo "--- 2 回目: plan（全件 NOOP になれば冪等性 OK）---"
+python zbx_bulk_host.py plan samples/hosts.example.csv -q
+'''
+
+[tasks.plan]
+description = "dry-run で差分を確認する（例: mise run plan -- hosts.csv --create-groups）"
+run = "python zbx_bulk_host.py plan"
+
+[tasks.apply]
+description = "実際に登録／更新する（例: mise run apply -- hosts.csv --create-groups）"
+run = "python zbx_bulk_host.py apply"
+
+[tasks.clean]
+description = "生成物（.venv / __pycache__ / レポート）を削除する"
+run = '''
+rm -rf .venv
+find . -name __pycache__ -type d -prune -exec rm -rf {} +
+rm -f apply.json plan.json requirements.lock.txt
+'''

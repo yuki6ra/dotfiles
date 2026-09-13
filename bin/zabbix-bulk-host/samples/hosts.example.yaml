@@ -1,0 +1,98 @@
+# Zabbix ホスト一括登録 入力サンプル（YAML）
+#
+# defaults に共通値を書き、hosts[] で個別に上書きする。
+#   groups / templates / tags / macros … defaults と結合（同一キーはホスト側優先）
+#   interfaces                          … ホスト側で置換。省略キーは同 type の defaults を引き継ぐ
+#   スカラー値（status など）            … ホスト側が優先
+
+defaults:
+  groups:
+    - Linux servers
+  templates:
+    - Linux by Zabbix agent
+  interfaces:
+    - type: agent
+      useip: true
+      port: 10050
+  tags:
+    - {tag: managed_by, value: zbx-bulk-host}
+    - {tag: env, value: prod}
+  macros:
+    - {macro: "{$SITE}", value: tokyo}
+    - {macro: "{$CPU_WARN}", value: "80", description: "CPU 使用率の警告閾値(%)"}
+  status: enabled
+  inventory_mode: manual
+
+hosts:
+  # defaults を全部使い、IP だけ書く最小パターン
+  - host: web01.example.jp
+    name: Web サーバー 01
+    interfaces:
+      - {ip: 192.168.10.11}
+    groups: [Prod/Web]
+    tags: [{tag: role, value: web}]
+
+  - host: web02.example.jp
+    name: Web サーバー 02
+    interfaces:
+      - {ip: 192.168.10.12}
+    groups: [Prod/Web]
+    tags: [{tag: role, value: web}]
+
+  # テンプレートを追加し、マクロを上書きする
+  - host: db01.example.jp
+    name: DB サーバー 01
+    interfaces:
+      - {ip: 192.168.20.11}
+    groups: [Prod/DB]
+    templates: [MySQL by Zabbix agent]
+    tags: [{tag: role, value: db}]
+    macros:
+      - {macro: "{$CPU_WARN}", value: "90"}
+      - {macro: "{$MYSQL.USER}", value: zbx_monitor}
+      - {macro: "{$MYSQL.PASSWORD}", value: "CHANGE_ME", type: secret}
+    description: MySQL プライマリ
+
+  # 構築中なので無効状態で登録する
+  - host: db02.example.jp
+    name: DB サーバー 02
+    interfaces:
+      - {ip: 192.168.20.12}
+    groups: [Prod/DB]
+    templates: [MySQL by Zabbix agent]
+    tags: [{tag: role, value: db}]
+    status: disabled
+
+  # SNMP のネットワーク機器（defaults の agent 定義を使わず置換）
+  - host: sw-core01
+    name: コアスイッチ 01
+    groups: [Network devices]
+    templates: [Network Generic Device by SNMP]
+    interfaces:
+      - type: snmp
+        ip: 192.168.0.1
+        port: 161
+        details: {version: 2, community: "{$SNMP_COMMUNITY}", bulk: 1}
+    tags: [{tag: role, value: network}]
+    macros: [{macro: "{$SNMP_COMMUNITY}", value: public}]
+    inventory_mode: automatic
+
+  # DNS 名で監視する / 拠点プロキシ経由（Zabbix 7.0 の monitored_by=1 になる）
+  - host: batch01.example.jp
+    name: バッチサーバー 01
+    groups: [Prod/Batch]
+    interfaces:
+      - {useip: false, dns: batch01.example.jp}
+    tags: [{tag: role, value: batch}]
+    macros: [{macro: "{$SITE}", value: osaka}]
+    # proxy: proxy-osaka       # 実環境のプロキシ名に合わせて有効化する
+
+  # ステージング（env タグを上書き）
+  - host: stg-web01.example.jp
+    name: STG Web 01
+    groups: [Staging]
+    interfaces:
+      - {ip: 10.20.30.11}
+    tags:
+      - {tag: env, value: staging}
+      - {tag: role, value: web}

@@ -1,4 +1,4 @@
-{subnixr/minimal config, pkgs, lib, user, ... }:
+{ config, pkgs, lib, user, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should manage.
@@ -6,8 +6,8 @@
 
   home.packages = with pkgs; [
     # gnu-time # linux time, macのみで良さそう
-    colima
-    pngpaste
+    # colima
+    # pngpaste
   ];
 
   home.file = {

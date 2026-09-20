@@ -6,24 +6,12 @@ else
   compinit -C
 fi
 
-### 特殊ファイルDS_Store
-# tarballへ特殊ファイルを含めないようにする
-tgz() {
-  if [ $# -lt 2 ]; then
-    echo "Usage: tgz DIST SOURCE"
-  else
-    xattr -rc "${@:2}" && \
-    env COPYFILE_DISABLE=1 tar zcvf "$1" --exclude=".DS_Store" "${@:2}"
-  fi
-}
+# autoload -U +X bashcompinit && bashcompinit
+# complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
-## 補完
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /opt/homebrew/bin/terraform terraform
-
-# cdをzoxideでreplace
-eval "$(zoxide init zsh --cmd cd)"
-
-# mise有効化
-eval "$(mise activate zsh)"
-
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh --cmd cd)"
+fi

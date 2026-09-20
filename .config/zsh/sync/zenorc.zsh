@@ -1,6 +1,6 @@
 # デフォルト設定
 # ref: https://github.com/yuki-yano/zeno.zsh/blob/main/README.ja.md#%E8%A8%AD%E5%AE%9A%E4%BE%8B
-export ZENO_HOME=~/.config/zeno
+export ZENO_HOME="$HOME/.config/zeno"
 
   ## ^m: Ctrl+m または Enter
   ## ^i: Tab
@@ -36,4 +36,3 @@ if [[ -n $ZENO_LOADED ]]; then
   # （デフォルト: あれば fzf-completion、なければ expand-or-complete）
   # export ZENO_COMPLETION_FALLBACK=expand-or-complete
 fi
-

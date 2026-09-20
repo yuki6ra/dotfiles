@@ -29,32 +29,32 @@
     # # "Hello, world!" when run.
     # pkgs.hello
     ## shell configuration
-    zsh # default shell
-    sheldon # zsh/bash plugin manager
-
-    ## tools
-    claude-code
-    git
-    lazygit
-    delta
-    ghq
-    neovim # nighly
-    zoxide # super cd, required zeno
-    fzf # fuzzy finder, required zeno
-    ripgrep # super grep, required nvim
-    tree
-    openssl
-    git-secrets
-
-    ## develop
-    mise
-    docker
-    docker-compose
-    terraform
-    terraform-ls
-    azure-cli
-    awscli
-    yaml-language-server
+    # zsh # default shell
+    # sheldon # zsh/bash plugin manager
+    #
+    # ## tools
+    # claude-code
+    # git
+    # lazygit
+    # delta
+    # ghq
+    # neovim # nighly
+    # zoxide # super cd, required zeno
+    # fzf # fuzzy finder, required zeno
+    # ripgrep # super grep, required nvim
+    # tree
+    # openssl
+    # git-secrets
+    #
+    # ## develop
+    # mise
+    # docker
+    # docker-compose
+    # terraform
+    # terraform-ls
+    # azure-cli
+    # awscli
+    # yaml-language-server
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -78,22 +78,22 @@
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
     ## shell
-    ".zshrc".source = ../../.config/zsh/.zshrc;
-    ".zshenv".source = ../../.config/zsh/.zshenv;
-    ".config/sheldon".source = ../../.config/sheldon;
+    # ".zshrc".source = ../../.config/zsh/.zshrc;
+    # ".zshenv".source = ../../.config/zsh/.zshenv;
+    # ".config/sheldon".source = ../../.config/sheldon;
     ".config/nix".source = ../../.config/nix;
 
     ## tools
-    ".gitconfig".source = config.lib.file.mkOutOfStoreSymlink "${builtins.toString config.home.homeDirectory}/Documents/dotfiles/.config/git/.gitconfig";
-    # ".config/gh".source =  config.lib.file.mkOutOfStoreSymlink "${builtins.toString config.home.homeDirectory}/Documents/dotfiles/.config/gh";
-    # ".config/nvim".source =  ../../.config/nvim;
-    ".config/zeno".source = ../../.config/zeno;
-    ".config/lazygit".source = ../../.config/lazygit;
-    ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${builtins.toString config.home.homeDirectory}/Documents/ghq/github.com/yuki6ra/nvim";
-
-    ## develop
-    ".config/mise".source = ../../.config/mise;
-
+    # ".gitconfig".source = config.lib.file.mkOutOfStoreSymlink "${builtins.toString config.home.homeDirectory}/Documents/dotfiles/.config/git/.gitconfig";
+    # # ".config/gh".source =  config.lib.file.mkOutOfStoreSymlink "${builtins.toString config.home.homeDirectory}/Documents/dotfiles/.config/gh";
+    # # ".config/nvim".source =  ../../.config/nvim;
+    # # ".config/zeno".source = ../../.config/zeno;
+    # ".config/lazygit".source = ../../.config/lazygit;
+    # ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${builtins.toString config.home.homeDirectory}/Documents/ghq/github.com/yuki6ra/nvim";
+    #
+    # ## develop
+    # ".config/mise".source = ../../.config/mise;
+    #
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
     #   org.gradle.console=verbose
@@ -101,7 +101,7 @@
     # '';
   };
 
-  fonts.fontconfig.enable = true;
+  # fonts.fontconfig.enable = true;
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
@@ -121,8 +121,8 @@
   #
   imports = [ inputs.gh-prism.homeManagerModules.default ];
  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-  programs.gh.enable = true;
-  programs.gh-prism.enable = true;
+  # programs.home-manager.enable = true;
+  # programs.gh.enable = true;
+  # programs.gh-prism.enable = true;
   # programs.claude-code.enable = true;
 }

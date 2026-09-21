@@ -1,13 +1,24 @@
 [tools]
-lua = "latest"
+azure = { version = "latest", dependency_prereleases = "allow", with = ["pip"] }
+claude = "latest"
+codex = "latest"
+colima = "latest"
 deno = "latest"
+docker-cli = "latest"
+docker-compose = "latest"
+fzf = "latest"
+ghq = "latest"
+lazygit = "latest"
+neovim = "latest"
+ripgrep = "latest"
+sheldon = "latest"
+zoxide = "latest"
+lua = "latest"
 node = "latest"
 go = "latest"
 terraform = "latest"
-
 tree-sitter = "latest"
 lua-language-server = "latest"
 terraform-ls = "latest"
 pnpm = "latest"
 uv = "latest"
-

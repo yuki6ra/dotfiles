@@ -7,5 +7,3 @@ setopt hist_ignore_all_dups # 重複を全て削除
 setopt share_history        # 同時に起動しているzshで履歴を共有する
 setopt inc_append_history   # 即時追記（share_history と併用）
 
-# nix
-# . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh

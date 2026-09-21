@@ -11,7 +11,12 @@ ghq = "latest"
 lazygit = "latest"
 neovim = "latest"
 ripgrep = "latest"
-sheldon = "latest"
+rust = "stable"
+"cargo:sheldon" = {
+  version = "0.8.5",
+  features = ["vendored-openssl"],
+}
+# sheldon = "latest"
 zoxide = "latest"
 lua = "latest"
 node = "latest"

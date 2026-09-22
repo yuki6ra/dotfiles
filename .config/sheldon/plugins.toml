@@ -13,13 +13,13 @@ defer = "{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source \"{{ file 
 github = "zsh-users/zsh-completions"
 
 [plugins.dotfiles-sync]
-local = "~/Documents/dotfiles/.config/zsh/sync"
-use = ["*.zsh"]
+local = "~/Documents/ghq/github.com/yuki6ra/dotfiles/.config/zsh"
+use = ["sync/*.zsh"]
 apply = ["source"]
 
 [plugins.dotfiles-defer]
-local = "~/Documents/dotfiles/.config/zsh/defer"
-use = ["*.zsh"]
+local = "~/Documents/ghq/github.com/yuki6ra/dotfiles/.config/zsh"
+use = ["defer/*.zsh"]
 apply = ["defer"]
 
 [plugins.minimal]
